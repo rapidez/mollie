@@ -7,7 +7,7 @@ You need to have the Mollie Magento 2 module installed and configured within you
 ## Installation
 
 ```
-composer require rapdidez/mollie
+composer require rapidez/mollie
 ```
 And add the JS to `resources/js/app.js`:
 ```
