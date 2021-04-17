@@ -29,3 +29,7 @@ You can publish the views with:
 ```
 php artisan vendor:publish --provider="Rapidez\Mollie\MollieServiceProvider" --tag=views
 ```
+
+## License
+
+GNU General Public License v3. Please see [License File](LICENSE) for more information.
