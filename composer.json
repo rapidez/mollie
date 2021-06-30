@@ -5,6 +5,7 @@
         "rapidez"
     ],
     "homepage": "https://rapidez.io",
+    "license": "GPL-3.0",
     "authors": [
         {
             "name": "Roy Duineveld",
@@ -15,17 +16,11 @@
     ],
     "minimum-stability": "dev",
     "prefer-stable": true,
-    "repositories": [
-        {
-            "type": "vcs",
-            "url":  "git@github.com:rapidez/core.git"
-        }
-    ],
     "require": {
         "php": "^7.4",
         "guzzlehttp/guzzle": "^7.2",
         "illuminate/support": "^8.0",
-        "rapidez/core": "dev-master"
+        "rapidez/core": "^0.1"
     },
     "autoload": {
         "psr-4": {
