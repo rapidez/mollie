@@ -5,7 +5,10 @@ document.addEventListener('turbolinks:load', () => {
         })
     });
 
-    window.app.$on('CheckoutPaymentSaved', () => {
+    window.app.$on('CheckoutPaymentSaved', (data) => {
+        if (!data.order.payment_method_code.includes('mollie_')) {
+            return;
+        }
         window.app.checkout.doNotGoToTheNextStep = true
         window.magento.post('mollie/transaction/start', {
             token: window.app.checkout.mollie
