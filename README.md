@@ -18,7 +18,7 @@ require('Vendor/rapidez/mollie/resources/js/mollie')
 
 You need to enable and set a custom return url in the Magento 2 configuration:
 ```
-https://yourdomain.com/mollie-return/{{ORDER_HASH}}
+https://yourdomain.com/mollie-return/{{order_hash}}/{{payment_token}}
 ```
 
 > If you're working locally and your environment isn't accessible from the web you need to disable the webhook setting as Mollie can't reach your environment. This results in getting the "pending payment" page after each payment.
