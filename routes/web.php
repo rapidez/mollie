@@ -2,10 +2,22 @@
 
 Route::middleware('web')->group(function () {
     Route::get('mollie-return/{orderHash}/{paymentToken}', function ($orderHash, $paymentToken) {
-        $url = config('rapidez.magento_url').'/rest/'.config('rapidez.store_code').'/V1/mollie/get-order/'.$orderHash;
-        $status = Http::get($url)->throw()[0]['status'];
+        $url = config('rapidez.magento_url').'/graphql';
 
-        if ($status === 'canceled') {
+        $response = Http::post($url, [
+            'query' => 'mutation MollieProcessTransaction($payment_token: String!) {
+              mollieProcessTransaction (input: {payment_token: $payment_token}) {
+                  paymentStatus,
+                  cart {mollie_available_issuers {name, code}}
+              }
+            }',
+            'variables' => [
+                'payment_token' => $paymentToken
+            ]
+        ])->throw()->object()->data;
+
+        // The cart is only available when the payment status is failed, canceled or expired.
+        if (!$response->mollieProcessTransaction || isset($response->mollieProcessTransaction->cart) || $response->mollieProcessTransaction->paymentStatus === 'ERROR') {
             return redirect('cart');
         }
 
@@ -15,6 +27,10 @@ Route::middleware('web')->group(function () {
             ->where('mollie_payment_paymenttoken.token', $paymentToken)
             ->first();
 
-        return view('mollie::'.$status, ['order' => $order]);
+        if ($order->status === 'cancelled') {
+            return redirect('cart');
+        }
+
+        return view('mollie::'.$order->status, ['order' => $order]);
     });
 });
