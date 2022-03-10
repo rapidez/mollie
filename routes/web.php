@@ -13,7 +13,7 @@ Route::middleware('web')->group(function () {
             }',
             'variables' => [
                 'payment_token' => $paymentToken,
-            ]
+            ],
         ])->throw()->object()->data;
 
         // The cart is only available when the payment status is failed, canceled or expired.
