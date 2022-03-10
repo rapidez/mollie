@@ -12,7 +12,7 @@ Route::middleware('web')->group(function () {
               }
             }',
             'variables' => [
-                'payment_token' => $paymentToken
+                'payment_token' => $paymentToken,
             ]
         ])->throw()->object()->data;
 
