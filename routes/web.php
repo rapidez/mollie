@@ -6,10 +6,15 @@ Route::middleware('web')->group(function () {
 
         $response = Http::post($url, [
             'query' => 'mutation MollieProcessTransaction($payment_token: String!) {
-              mollieProcessTransaction (input: {payment_token: $payment_token}) {
-                  paymentStatus,
-                  cart {mollie_available_issuers {name, code}}
-              }
+                mollieProcessTransaction (input: { payment_token: $payment_token }) {
+                    paymentStatus,
+                    cart {
+                        mollie_available_issuers {
+                            name,
+                            code
+                        }
+                    }
+                }
             }',
             'variables' => [
                 'payment_token' => $paymentToken,
@@ -17,7 +22,9 @@ Route::middleware('web')->group(function () {
         ])->throw()->object()->data;
 
         // The cart is only available when the payment status is failed, canceled or expired.
-        if (!$response->mollieProcessTransaction || isset($response->mollieProcessTransaction->cart) || $response->mollieProcessTransaction->paymentStatus === 'ERROR') {
+        if (!$response->mollieProcessTransaction
+            || isset($response->mollieProcessTransaction->cart)
+            || $response->mollieProcessTransaction->paymentStatus === 'ERROR') {
             return redirect('cart');
         }
 
