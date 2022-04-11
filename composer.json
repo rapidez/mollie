@@ -17,10 +17,10 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": "^7.4",
+        "php": "^8.0|^8.1",
         "guzzlehttp/guzzle": "^7.2",
-        "illuminate/support": "^8.0",
-        "rapidez/core": "~0.1"
+        "illuminate/support": "^9.0",
+        "rapidez/core": "~0.54"
     },
     "autoload": {
         "psr-4": {
