@@ -34,7 +34,7 @@ Route::middleware('web')->group(function () {
             ->where('mollie_payment_paymenttoken.token', $paymentToken)
             ->first();
 
-        if ($order->status === 'cancelled') {
+        if ($order->status === 'canceled') {
             return redirect('cart');
         }
 
