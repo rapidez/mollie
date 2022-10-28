@@ -1,6 +1,12 @@
 # Changelog
 
-## [Unreleased](https://github.com/org/repo/compare/0.4.1...master)
+## [Unreleased](https://github.com/org/repo/compare/0.4.2...master)
+
+## [0.4.2](https://github.com/org/repo/compare/0.4.1...0.4.2) - 2022-10-28
+
+### Fixed
+
+- No longer use cart to check for other failed statuses since this no longer works (#7)
 
 ## [0.4.1](https://github.com/org/repo/compare/0.4.0...0.4.1) - 2022-06-21
 
