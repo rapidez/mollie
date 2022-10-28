@@ -5,7 +5,7 @@ Route::middleware('web')->group(function () {
         $url = config('rapidez.magento_url').'/graphql';
 
         $response = Http::post($url, [
-            'query' => view('mollie::graphql.process-transaction')->render(),
+            'query'     => view('mollie::graphql.process-transaction')->render(),
             'variables' => [
                 'payment_token' => $paymentToken,
             ],
