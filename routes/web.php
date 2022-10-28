@@ -5,26 +5,14 @@ Route::middleware('web')->group(function () {
         $url = config('rapidez.magento_url').'/graphql';
 
         $response = Http::post($url, [
-            'query' => 'mutation MollieProcessTransaction($payment_token: String!) {
-                mollieProcessTransaction (input: { payment_token: $payment_token }) {
-                    paymentStatus,
-                    cart {
-                        mollie_available_issuers {
-                            name,
-                            code
-                        }
-                    }
-                }
-            }',
+            'query' => view('mollie::graphql.process-transaction')->render(),
             'variables' => [
                 'payment_token' => $paymentToken,
             ],
         ])->throw()->object()->data;
 
-        // The cart is only available when the payment status is failed, canceled or expired.
         if (!$response->mollieProcessTransaction
-            || isset($response->mollieProcessTransaction->cart)
-            || $response->mollieProcessTransaction->paymentStatus === 'ERROR') {
+            || in_array($response->mollieProcessTransaction->paymentStatus, ['ERROR', 'EXPIRED', 'CANCELED', 'FAILED'])) {
             return redirect('cart');
         }
 

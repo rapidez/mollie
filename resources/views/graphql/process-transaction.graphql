@@ -1,0 +1,5 @@
+mutation MollieProcessTransaction($payment_token: String!) {
+    mollieProcessTransaction (input: { payment_token: $payment_token }) {
+        paymentStatus
+    }
+}
