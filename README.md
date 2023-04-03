@@ -10,11 +10,6 @@ You need to have the Mollie Magento 2 module installed and configured within you
 composer require rapidez/mollie
 ```
 
-Make sure this exists in your `app.js`:
-```js
-import.meta.glob(['Vendor/rapidez/*/resources/js/app.js'], { eager: true });
-```
-
 ### Configuration
 
 You need to enable and set a custom return url in the Magento 2 configuration:
