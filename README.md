@@ -6,12 +6,8 @@ You need to have the Mollie Magento 2 module installed and configured within you
 
 ## Installation
 
-```
+```bash
 composer require rapidez/mollie
-```
-And add the JS to `resources/js/app.js`:
-```
-require('Vendor/rapidez/mollie/resources/js/mollie')
 ```
 
 ### Configuration
@@ -26,7 +22,7 @@ https://yourdomain.com/mollie-return/{{order_hash}}/{{payment_token}}
 ### Views
 
 You can publish the views with:
-```
+```bash
 php artisan vendor:publish --provider="Rapidez\Mollie\MollieServiceProvider" --tag=views
 ```
 
