@@ -23,7 +23,7 @@ class MollieServiceProvider extends ServiceProvider
             ], 'views');
 
             $this->publishes([
-                __DIR__ . '/../resources/payment-icons' => public_path('payment-icons'),
+                __DIR__.'/../resources/payment-icons' => public_path('payment-icons'),
             ], 'payment-icons');
         }
     }
