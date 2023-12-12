@@ -21,6 +21,10 @@ class MollieServiceProvider extends ServiceProvider
             $this->publishes([
                 __DIR__.'/../resources/views' => resource_path('views/vendor/mollie'),
             ], 'views');
+
+            $this->publishes([
+                __DIR__.'/../resources/payment-icons' => public_path('payment-icons'),
+            ], 'payment-icons');
         }
     }
 }
