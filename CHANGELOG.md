@@ -1,6 +1,12 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/rapidez/mollie/compare/0.6.1...master)
+[Unreleased changes](https://github.com/rapidez/mollie/compare/0.7.0...master)
+## [0.7.0](https://github.com/rapidez/mollie/releases/tag/0.7.0) - 2023-12-12
+
+### Added
+
+- Payment icons (#10)
+
 ## [0.6.1](https://github.com/rapidez/mollie/releases/tag/0.6.1) - 2023-09-22
 
 ### Added
