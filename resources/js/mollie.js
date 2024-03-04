@@ -10,10 +10,10 @@ document.addEventListener('turbo:load', () => {
             return;
         }
         window.app.checkout.doNotGoToTheNextStep = true
-        window.magento.post('mollie/transaction/start', {
+        window.magentoAPI('post', 'mollie/transaction/start', {
             token: window.app.checkout.mollie
         }).then(response => {
-            window.location.replace(response.data)
+            window.location.replace(response)
         })
     });
 })
