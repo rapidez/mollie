@@ -1,7 +1,7 @@
 document.addEventListener('turbo:load', () => {
     window.app.$on('checkout-credentials-saved', () => {
         window.app.magentoCart('get', 'mollie/payment-token').then(response => {
-            window.app.checkout.mollie = response.data
+            window.app.checkout.mollie = response
         })
     });
 
@@ -10,10 +10,10 @@ document.addEventListener('turbo:load', () => {
             return;
         }
         window.app.checkout.doNotGoToTheNextStep = true
-        window.magento.post('mollie/transaction/start', {
+        window.magentoAPI('post', 'mollie/transaction/start', {
             token: window.app.checkout.mollie
         }).then(response => {
-            window.location.replace(response.data)
+            window.location.replace(response)
         })
     });
 })
