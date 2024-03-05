@@ -1,6 +1,16 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/rapidez/mollie/compare/0.7.0...master)
+[Unreleased changes](https://github.com/rapidez/mollie/compare/1.0.0...master)
+## [1.0.0](https://github.com/rapidez/mollie/releases/tag/1.0.0) - 2024-03-05
+
+### Added
+
+- Rapidez v2 support (#12)
+
+### Fixed
+
+- Fix ideal icon (#11)
+
 ## [0.7.0](https://github.com/rapidez/mollie/releases/tag/0.7.0) - 2023-12-12
 
 ### Added
