@@ -1,4 +1,4 @@
-document.addEventListener('turbo:load', () => {
+document.addEventListener('vue:loaded', () => {
     window.app.$on('checkout-credentials-saved', () => {
         window.app.magentoCart('get', 'mollie/payment-token').then(response => {
             window.app.checkout.mollie = response
