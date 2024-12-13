@@ -30,17 +30,18 @@ class MollieServiceProvider extends ServiceProvider
         }
 
         // Fallback for default mollie url
-        Route::get('mollie/checkout/process', fn() => redirect(route('checkout.success', request()->query()), 308));
+        Route::get('mollie/checkout/process', fn () => redirect(route('checkout.success', request()->query()), 308));
         // Fallback for legacy mollie url
         Route::get('mollie-return/{orderHash}/{paymentToken}', fn ($orderHash, $paymentToken) => redirect(route('checkout.success', ['order_hash' => $orderHash, 'payment_token' => $paymentToken, ...request()->query()]), 308));
 
-        Eventy::addFilter('checkout.queries.order.data', function($attributes = []) {
+        Eventy::addFilter('checkout.queries.order.data', function ($attributes = []) {
             $attributes[] = 'mollie_redirect_url';
             $attributes[] = 'mollie_payment_token';
+
             return $attributes;
         });
 
-        Eventy::addFilter('checkout.checksuccess', function($success = true) {
+        Eventy::addFilter('checkout.checksuccess', function ($success = true) {
             return $success && App::call(CheckSuccessfulOrder::class);
         });
     }
