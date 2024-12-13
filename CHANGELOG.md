@@ -1,6 +1,12 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/rapidez/mollie/compare/1.1.1...master)
+[Unreleased changes](https://github.com/rapidez/mollie/compare/3.0.0...master)
+## [3.0.0](https://github.com/rapidez/mollie/releases/tag/3.0.0) - 2024-12-13
+
+### Added
+
+- Rapidez v3 support (#14)
+
 ## [1.1.1](https://github.com/rapidez/mollie/releases/tag/1.1.1) - 2024-11-29
 
 ### Fixed
