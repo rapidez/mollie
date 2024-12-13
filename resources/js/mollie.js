@@ -1,19 +1,75 @@
-document.addEventListener('vue:loaded', () => {
-    window.app.$on('checkout-credentials-saved', () => {
-        window.app.magentoCart('get', 'mollie/payment-token').then(response => {
-            window.app.checkout.mollie = response
-        })
-    });
+import { cart } from 'Vendor/rapidez/core/resources/js/stores/useCart'
+import { addBeforePaymentMethodHandler, addBeforePlaceOrderHandler, addAfterPlaceOrderHandler } from 'Vendor/rapidez/core/resources/js/stores/usePaymentHandlers'
 
-    window.app.$on('checkout-payment-saved', (data) => {
-        if (!data.order.payment_method_code.includes('mollie_')) {
-            return;
+document.addEventListener('vue:loaded', (event) => {
+    Vue.set(window.app.custom, 'mollie_selected_issuer', null)
+});
+
+addBeforePaymentMethodHandler(async function (query, variables, options) {
+    if (!variables.code.includes('mollie_') || !window?.app?.checkout?.mollie_selected_issuer)
+    {
+        return [query, variables, options];
+    }
+
+    // Add mollie_selected_issuer to setPaymentMethodOnCart
+    query = config.queries.cart +
+    `
+
+    mutation setMolliePaymentMethodOnCart(
+        $cart_id: String!,
+        $code: String!,
+        $mollie_selected_issuer: String
+    ) {
+        setPaymentMethodOnCart(input: {
+            cart_id: $cart_id,
+            payment_method: {
+                code: $code,
+                mollie_selected_issuer: $mollie_selected_issuer
+            }
+        }) {
+            cart { ...cart }
         }
-        window.app.checkout.doNotGoToTheNextStep = true
-        window.magentoAPI('post', 'mollie/transaction/start', {
-            token: window.app.checkout.mollie
-        }).then(response => {
-            window.location.replace(response)
-        })
-    });
-})
+    }`
+
+    variables.mollie_selected_issuer = window.app.custom.mollie_selected_issuer
+
+    return [query, variables, options];
+});
+
+addBeforePlaceOrderHandler(async function (query, variables, options) {
+    if (!cart.value?.selected_payment_method?.code?.includes('mollie_')) {
+        return [query, variables, options];
+    }
+
+    // Add mollie_return_url to placeorder
+    query = config.queries.order + config.queries.orderV2 +
+    `
+
+    mutation molliePlaceOrder($cart_id: String!, $mollie_return_url: String) {
+        placeOrder(
+            input: {
+                cart_id: $cart_id,
+                mollie_return_url: $mollie_return_url
+            }
+        ) {
+            order {
+                ...order
+            }
+            orderV2 {
+                ...orderV2
+            }
+            errors {
+                code
+                message
+            }
+        }
+    }`
+
+    variables.mollie_return_url = url('/checkout/success?payment_token={{payment_token}}');
+
+    return [query, variables, options]
+});
+
+addAfterPlaceOrderHandler(async function (response, mutationComponent) {
+    mutationComponent.redirect = response?.data?.placeOrder?.order?.mollie_redirect_url || mutationComponent.redirect;
+});
