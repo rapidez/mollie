@@ -1,6 +1,19 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/rapidez/mollie/compare/1.0.0...master)
+[Unreleased changes](https://github.com/rapidez/mollie/compare/1.1.1...master)
+## [1.1.1](https://github.com/rapidez/mollie/releases/tag/1.1.1) - 2024-11-29
+
+### Fixed
+
+- Listen to vue:loaded (#15)
+
+## [1.1.0](https://github.com/rapidez/mollie/releases/tag/1.1.0) - 2024-07-15
+
+### Added
+
+- Laravel 11 support (#13)
+
+
 ## [1.0.0](https://github.com/rapidez/mollie/releases/tag/1.0.0) - 2024-03-05
 
 ### Added
