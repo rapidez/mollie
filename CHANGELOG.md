@@ -1,6 +1,12 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/rapidez/mollie/compare/3.0.1...master)
+[Unreleased changes](https://github.com/rapidez/mollie/compare/3.0.2...master)
+## [3.0.2](https://github.com/rapidez/mollie/releases/tag/3.0.2) - 2025-03-18
+
+### Fixed
+
+- Fragments rename (#17)
+
 ## [3.0.1](https://github.com/rapidez/mollie/releases/tag/3.0.1) - 2025-01-28
 
 ### Fixed
