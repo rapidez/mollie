@@ -12,7 +12,7 @@ addBeforePaymentMethodHandler(async function (query, variables, options) {
     }
 
     // Add mollie_selected_issuer to setPaymentMethodOnCart
-    query = config.queries.cart +
+    query = config.fragments.cart +
     `
 
     mutation setMolliePaymentMethodOnCart(
@@ -42,7 +42,7 @@ addBeforePlaceOrderHandler(async function (query, variables, options) {
     }
 
     // Add mollie_return_url to placeorder
-    query = config.queries.order + config.queries.orderV2 +
+    query = config.fragments.order + config.fragments.orderV2 +
     `
 
     mutation molliePlaceOrder($cart_id: String!, $mollie_return_url: String) {
