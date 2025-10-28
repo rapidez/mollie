@@ -2,11 +2,11 @@ import { cart } from 'Vendor/rapidez/core/resources/js/stores/useCart'
 import { addBeforePaymentMethodHandler, addBeforePlaceOrderHandler, addAfterPlaceOrderHandler } from 'Vendor/rapidez/core/resources/js/stores/usePaymentHandlers'
 
 document.addEventListener('vue:loaded', (event) => {
-    Vue.set(window.app.custom, 'mollie_selected_issuer', null)
+    window.app.config.globalProperties.custom.mollie_selected_issuer = window.app.config.globalProperties?.custom?.mollie_selected_issuer
 });
 
 addBeforePaymentMethodHandler(async function (query, variables, options) {
-    if (!variables.code.includes('mollie_') || !window?.app?.checkout?.mollie_selected_issuer)
+    if (!variables.code.includes('mollie_') || !window?.app?.config?.globalProperties?.custom?.mollie_selected_issuer)
     {
         return [query, variables, options];
     }
@@ -31,7 +31,7 @@ addBeforePaymentMethodHandler(async function (query, variables, options) {
         }
     }`
 
-    variables.mollie_selected_issuer = window.app.custom.mollie_selected_issuer
+    variables.mollie_selected_issuer = window.app.config.globalProperties.custom.mollie_selected_issuer
 
     return [query, variables, options];
 });
