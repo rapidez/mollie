@@ -1,6 +1,13 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/rapidez/mollie/compare/4.0.0...master)
+[Unreleased changes](https://github.com/rapidez/mollie/compare/5.0.0...master)
+## [5.0.0](https://github.com/rapidez/mollie/releases/tag/5.0.0) - 2026-04-30
+
+### Changed
+- Rapidez v5 support (#18)
+### Fixed
+- Fixed redirect url (#19)
+
 ## [4.0.0](https://github.com/rapidez/mollie/releases/tag/4.0.0) - 2025-06-05
 
 ### Added
