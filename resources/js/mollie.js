@@ -58,10 +58,6 @@ addBeforePlaceOrderHandler(async function (query, variables, options) {
             orderV2 {
                 ...orderV2
             }
-            errors {
-                code
-                message
-            }
         }
     }`
 
