@@ -1,6 +1,49 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/rapidez/mollie/compare/1.1.1...master)
+[Unreleased changes](https://github.com/rapidez/mollie/compare/2.0.0...master)
+## [2.0.0](https://github.com/rapidez/mollie/releases/tag/2.0.0) - 2026-07-28
+
+### Added
+
+- Laravel 12 support (#21)
+
+## [5.0.0](https://github.com/rapidez/mollie/releases/tag/5.0.0) - 2026-04-30
+
+### Changed
+- Rapidez v5 support (#18)
+### Fixed
+- Fixed redirect url (#19)
+
+## [4.0.0](https://github.com/rapidez/mollie/releases/tag/4.0.0) - 2025-06-05
+
+### Added
+
+- Rapidez v4 support (c8e293f)
+
+## [3.1.0](https://github.com/rapidez/mollie/releases/tag/3.1.0) - 2025-04-10
+
+### Changed
+
+- Handle the Laravel requirement through the core requirement (d97d99e)
+
+## [3.0.2](https://github.com/rapidez/mollie/releases/tag/3.0.2) - 2025-03-18
+
+### Fixed
+
+- Fragments rename (#17)
+
+## [3.0.1](https://github.com/rapidez/mollie/releases/tag/3.0.1) - 2025-01-28
+
+### Fixed
+
+- Require Rapidez 3.0 (#16)
+
+## [3.0.0](https://github.com/rapidez/mollie/releases/tag/3.0.0) - 2024-12-13
+
+### Added
+
+- Rapidez v3 support (#14)
+
 ## [1.1.1](https://github.com/rapidez/mollie/releases/tag/1.1.1) - 2024-11-29
 
 ### Fixed
